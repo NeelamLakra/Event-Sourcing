@@ -45,9 +45,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     
     
-    private PersistentEntityRef<EmployeeCommand> employeeEntityRef(Employee employee){
-        return persistentEntityRegistry.refFor(EmployeeEntity.class,employee.getProjectName());
-    }
     
     @Override
     public ServiceCall<Employee, Done> newEmployee() {
@@ -74,6 +71,8 @@ public class EmployeeServiceImpl implements EmployeeService {
            return ref.ask(EmployeeCommand.deleteEmployee.builder().employee(employee).build());
         };
     }
-    
+    private PersistentEntityRef<EmployeeCommand> employeeEntityRef(Employee employee){
+        return persistentEntityRegistry.refFor(EmployeeEntity.class,employee.getName());
+    }
    
     }

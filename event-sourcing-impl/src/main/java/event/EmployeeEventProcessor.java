@@ -96,7 +96,7 @@ public class EmployeeEventProcessor extends ReadSideProcessor<EmployeeEvent> {
     }
     
     private CompletionStage<List<BoundStatement>> processPostDeleted(EmployeeEvent.employeeDeleted event) {
-        BoundStatement bindWriteEmployee = writeEmployee.bind();
+        BoundStatement bindWriteEmployee = deleteEmployee.bind();
         bindWriteEmployee.setString("name",event.getEmployee().getName());
         return CassandraReadSide.completedStatements(Arrays.asList(bindWriteEmployee));
         

@@ -26,7 +26,7 @@ public interface EmployeeService extends Service {
         
                 restCall(Method.POST,"/api/eventSourcing/addEmployee",this::newEmployee),
                 restCall(Method.PUT,"/api/eventSourcing/updateEmployee/:name",this::updateEmployee),
-                restCall(Method.DELETE,"/api/eventSourcing/deleteEmployee",this::deleteEmployee),
+                restCall(Method.DELETE,"/api/eventSourcing/deleteEmployee/:name",this::deleteEmployee),
                 restCall(Method.GET,"/api/eventSourcing/getEmployee/:name",this::getEmployeeState)
         ).withAutoAcl(true);
     }

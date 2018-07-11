@@ -39,10 +39,11 @@ public class EmployeeEntity extends PersistentEntity<EmployeeCommand, EmployeeEv
         ctx.thenPersist(EmployeeEvent.employeeDeleted.builder().employee(cmd.getEmployee()).entityId("employee").build(),
                 event->ctx.reply(Done.getInstance()))
         );
-        
-        behaviorBuilder.setEventHandler(EmployeeEvent.employeeDeleted.class,
-                event->EmployeeState.builder().employee(Optional.of(event.getEmployee())).build());
-        
+
+        behaviorBuilder.setEventHandler(EmployeeEvent.employeeDeleted.class, event ->
+                        EmployeeState.builder().employee(Optional.empty())
+                                .timestamp(LocalDateTime.now().toString()).build());
+
         
         behaviorBuilder.setReadOnlyCommandHandler(EmployeeCommand.EmployeeCurrentState.class,(cmd, ctx)->
         ctx.reply(state().getEmployee())
