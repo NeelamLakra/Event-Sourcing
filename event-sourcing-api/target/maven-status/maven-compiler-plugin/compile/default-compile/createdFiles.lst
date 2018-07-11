@@ -1,0 +1,3 @@
+com/event/sourcing/api/Employee.class
+com/event/sourcing/api/Employee$EmployeeBuilder.class
+com/event/sourcing/api/EmployeeService.class
